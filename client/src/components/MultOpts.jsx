@@ -2,55 +2,60 @@
 import "./MultOpt.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemp, getTempDogs } from "../actions";
+import { useState } from "react";
 
 export const MultOpts = () => {
   const { redTemp } = useSelector((state) => state);
+  const [queryTemps, setQueryTemps] = useState([]);
   const dispatch = useDispatch();
-  const queryTemps = [];
 
   const countSelected = () => {
     let checked = document.querySelectorAll(".checked");
     let btnText = document.querySelector(".btn-text");
     checked.length
       ? (btnText.innerText = `${checked.length} Selected`)
-      : (btnText.innerText = "Select Languaje");
+      : (btnText.innerText = "Select Temperament");
   };
 
-  const handleOnClickDiv = (e) => {
+  const handleOnClickDiv = () => {
     dispatch(getTemp());
-    e.target.classList.toggle("open");
+    document.querySelector(".select-btn").classList.toggle("open");
   };
 
-  const handleOnClickItem = (e) => {
-    e.target.classList.toggle("checked");
-    e.target.classList[1]
-      ? queryTemps.push(e.target.childNodes[1].innerText)
-      : queryTemps.pop(e.target.childNodes[1].innerText);
-    console.log("queryTemps ", queryTemps);
+  const OnClickItem = (e) => {
+    const li = //si el click es en algun span, el elemento es li
+      e.target.classList[0] === "item" ? e.target : e.target.parentElement;
+    li.classList.toggle("checked");
+    li.classList[1]
+      ? setQueryTemps([...queryTemps, li.childNodes[1].innerText])
+      : setQueryTemps(
+          queryTemps.filter((e) => e !== li.childNodes[1].innerText)
+        );
+    console.log(queryTemps);
     countSelected();
   };
 
   const handleOnClickRender = () => {
-    dispatch(getTempDogs({ temp: queryTemps }));
     document.querySelector(".select-btn").classList.toggle("open");
-    document
-      .querySelectorAll(".checked")
-      .forEach((e) => (e.className = "item"));
-    countSelected();
+    dispatch(getTempDogs({ temp: queryTemps }));
+    // document
+    //   .querySelectorAll(".checked")
+    //   .forEach((e) => (e.className = "item"));
+    // countSelected();
   };
 
   return (
     <div className="container">
       <div onClick={handleOnClickDiv} className="select-btn">
         <span className="btn-text">Select Temperament </span>
-        <span onClick={handleOnClickRender} className="arrow-dwn">
-          <i className="fa-solid fa-chevron-down"></i>
+        <span onClick={handleOnClickRender} className="filter">
+          <i className="fa-solid fa-filter"></i>
         </span>
       </div>
 
       <ul className="list-items">
         {redTemp.map((t) => (
-          <li key={t.id} className="item" onClick={handleOnClickItem}>
+          <li key={t.id} className="item" onClick={OnClickItem}>
             <span className="checkbox">
               <i className="fa-solid fa-check check-icon"></i>
             </span>

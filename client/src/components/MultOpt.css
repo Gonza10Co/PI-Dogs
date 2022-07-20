@@ -1,19 +1,14 @@
-
-
-* {
-  font-family: "Poppins", sans-serif;
-}
-
-container {
-  position: relative;
-  max-width: 320px;
-  width: 100%;
+.container {
+  margin-top: 5px;
+  margin-right: 20px;
+  float: right;
+  display: inline-grid;
+  width: 320px;
   border-radius: 8px;
-  margin: 80px auto 30px;
 }
 .select-btn {
   display: flex;
-  height: 50px;
+  height: 40px;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
@@ -29,14 +24,14 @@ container {
   color: #333;
 }
 
-.select-btn .arrow-dwn {
+.select-btn .filter {
   display: flex;
-  height: 21px;
-  width: 21px;
+  height: 30px;
+  width: 30px;
   color: #fff;
   font-size: 14px;
-  border-radius: 50%;
-  background: #6e93f7;
+  border-radius: 2px;
+  background: #2196F3;
   align-items: center;
   justify-content: center;
   transition: 1s;
@@ -44,6 +39,7 @@ container {
 .select-btn.open .arrow-dwn {
 transform: rotate(-180deg);
 }
+
 .list-items {
   position: relative;
   margin-top: 15px;
@@ -52,9 +48,12 @@ transform: rotate(-180deg);
   background-color: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   display: none;
+  z-index: 1;
 }
 
 .select-btn.open ~ .list-items{
+  position:absolute;
+  margin-top: 60px;
 display:flex;
 flex-direction: column;
 }
@@ -62,8 +61,10 @@ flex-direction: column;
 .list-items .item {
   display: flex;
   align-items: center;
-  list-style: none;
-  height: 50px;
+  height: 30px;
+    font-size: 16px;
+  font-weight: 400;
+  color: #333;
   cursor: pointer;
   transition: 1s;
   padding: 0 15px;
@@ -72,12 +73,6 @@ flex-direction: column;
 
 .list-items .item:hover {
   background-color: #e7edfe;
-}
-
-.item .item-text {
-  font-size: 16px;
-  font-weight: 400;
-  color: #333;
 }
 
 .item .checkbox {
@@ -90,6 +85,7 @@ flex-direction: column;
   margin-right: 12px;
   border: 1.5px solid #c0c0c0;
   transition: all 0.3s ease-in-out;
+  user-select: none;
 }
 
 .item.checked .checkbox{

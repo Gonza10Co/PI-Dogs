@@ -16,8 +16,8 @@ export default function Dog(props) {
         <Link to={`/dogs/${id}`}>
           <h2>{nombre}</h2>
         </Link>
-        <h5>
-          <span className="peso">Weight: {peso} kg</span>
+        <h5 className="peso">
+          <span>Weight: {peso} kg</span>
         </h5>
         <h5>
           <span className="temp">{tempString}</span>

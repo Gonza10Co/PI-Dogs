@@ -34,8 +34,9 @@
   background-repeat: no-repeat;
 }
 
-.card:hover .temp,
-.card:hover .peso {
+.card:hover h2,
+.card:hover .peso,
+.card:hover .temp {
   opacity: 1;
 }
 
@@ -43,14 +44,15 @@
   color: white;
   margin-top: 20px;
   margin-left: 20px;
+  margin-bottom: 0;
   opacity: 0.4;
   transition: opacity 2s;
 }
 
 .border .peso {
   position: absolute;
-  margin: 0px;
-  margin-left: 0.5em;
+  margin-top: 0px;
+  margin-left: 20px;
   color: white;
   opacity: 0;
   transition: opacity 2s;
