@@ -6,7 +6,6 @@ export default function DogDetail() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [dog, setDog] = useState({});
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (loading) {
@@ -16,14 +15,13 @@ export default function DogDetail() {
             response.json().then((resJson) => {
               setDog(resJson); // ➡ Guardar datos
               setLoading(false); // ➡ Desactivar modo "cargando"
-              setError(null); // ➡ No hubo error"
             });
           } else {
-            setError("Hubo un error cargando Data"); // ⬅️ hubo un problema HTTP 4XX o 5XX
+            console.log("Hubo un error cargando Data"); // ⬅️ hubo un problema HTTP 4XX o 5XX
           }
         })
         .catch((error) => {
-          setError("No pudimos hacer la solicitud para obtener el perrito");
+          console.log("No pudimos hacer la solicitud para obtener el perrito");
         });
     }
   }, [id, loading]); //⬅️ ahora este efecto se ejecutará cada vez que cambie este estado

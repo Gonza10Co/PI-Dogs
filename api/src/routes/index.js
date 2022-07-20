@@ -10,11 +10,10 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get("/dogs", async (req, res) => {
+  const { name } = req.query;
   let miData = await getApi();
-  if (req.query.name) {
-    const raza =
-      req.query.name[0].toUpperCase() +
-      req.query.name.substring(1).toLowerCase();
+  if (name) {
+    const raza = name[0].toUpperCase() + name.substring(1).toLowerCase();
     const perro = miData.filter((e) => e.nombre.includes(raza));
     perro.length
       ? res.json(perro)
@@ -24,13 +23,14 @@ router.get("/dogs", async (req, res) => {
   }
 });
 
+
 router.get("/dogs/:id", async (req, res) => {
   let miData = await getApi();
   res.json(
     miData.find(
       (e) =>
         Number(req.params.id)
-          ? e.id === Number(req.params.id) //From BD
+        ? e.id === Number(req.params.id) //From BD
           : e.id === req.params.id //From API
     )
   );
@@ -73,8 +73,35 @@ router.get("/temperaments", async (req, res) => {
       }
     });
   });
-
+  objTemp.sort((a, b) =>
+    a.temperamento > b.temperamento
+      ? 1
+      : b.temperamento > a.temperamento
+      ? -1
+      : 0
+  );
   res.json(await Temperamento.bulkCreate(objTemp));
+});
+
+router.post("/temperament/dogs", async (req, res) => {
+  const { temp } = req.body;
+  console.log(temp);
+  let miData = await getApi();
+  if (temp.length) {
+    console.log("va por aca");
+    const perros = [];
+    miData.forEach((e) => {
+      if (e.temperamento)
+        temp.every((v) => e.temperamento.includes(v)) && perros.push(e);
+    });
+    perros.length
+      ? res.json(perros)
+      : res
+          .status(404)
+          .send(`El temperamento ${temp} no existe en nuestros registros`);
+  } else {
+    res.json(miData);
+  }
 });
 
 module.exports = router;
