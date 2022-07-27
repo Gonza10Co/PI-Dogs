@@ -6,36 +6,35 @@ module.exports = (sequelize) => {
   sequelize.define(
     "raza",
     {
-      // id: {
-      //   type: DataTypes.INTEGER,
-      //   primaryKey: true,
-      //   set(value) {
-      //     this.setDataValue(value + "p");
-      //   },
-      // },
       nombre: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      altura: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        get() {
-          return this.getDataValue("altura") + " cm";
-        },
-      },
-      peso: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        get() {
-          return this.getDataValue("peso") + " kg";
-        },
+        unique: true,
       },
       duracion: {
         type: DataTypes.INTEGER,
         get() {
-          return this.getDataValue("duracion") + " años";
+          return this.getDataValue("duracion") + " years";
         },
+      },
+      alturaMin: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      alturaMax: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      pesoMin: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      pesoMax: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      imagen: {
+        type: DataTypes.STRING,
       },
     },
     {

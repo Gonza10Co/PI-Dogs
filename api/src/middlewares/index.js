@@ -1,11 +1,21 @@
 const axios = require("axios");
 require("dotenv").config();
 const { API_KEY } = process.env;
-const { Raza } = require("../db");
+const { Raza, Temperamento } = require("../db");
 
 module.exports = {
   getApi: async function () {
-    let miBD = await Raza.findAll();
+    let miBD = await Raza.findAll({
+      include: [
+        {
+          model: Temperamento,
+          attributes: ["temperamento"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
     let miApi = [];
     try {
       const response = await axios.get(
@@ -16,9 +26,12 @@ module.exports = {
         miApi.push({
           id: `api_${e.id}`,
           nombre: e.name,
-          temperamento: e.temperament?.split(", "),
-          peso: e.weight.metric,
-          altura: e.height.metric,
+          duracion: e.life_span,
+          alturaMin: e.height.metric.split(" - ")[0],
+          alturaMax: e.height.metric.split(" - ")[1],
+          pesoMin: e.weight.metric.split(" - ")[0],
+          pesoMax: e.weight.metric.split(" - ")[1],
+          temperamentos: e.temperament?.split(", "),
           imagen: e.image.url,
         });
       });

@@ -23,30 +23,52 @@ router.get("/dogs", async (req, res) => {
   }
 });
 
-
 router.get("/dogs/:id", async (req, res) => {
   let miData = await getApi();
   res.json(
     miData.find(
       (e) =>
         Number(req.params.id)
-        ? e.id === Number(req.params.id) //From BD
+          ? e.id === Number(req.params.id) //From BD
           : e.id === req.params.id //From API
     )
   );
 });
 
 router.post("/dogs", async (req, res) => {
-  const { nombre, altura, peso, duracion } = req.body;
-  if (!nombre || !altura || !peso)
+  const {
+    nombre,
+    duracion,
+    alturaMin,
+    alturaMax,
+    pesoMin,
+    pesoMax,
+    temperamentos,
+    imagen
+  } = req.body;
+  if (!nombre || !alturaMin || !alturaMax || !pesoMin || !pesoMax)
     return res.status(404).send("Falta ingresar datos obligatorios");
   try {
     const nuevaRaza = await Raza.create({
       nombre,
-      altura,
-      peso,
       duracion,
+      alturaMin,
+      alturaMax,
+      pesoMin,
+      pesoMax,
+      imagen,
     });
+    if (temperamentos) {
+      let tempId = []; //Hago el link temp-razas
+      for (let i = 0; i < temperamentos.length; i++) {
+        const [att, created] = await Temperamento.findOrCreate({
+          where: { temperamento: temperamentos[i] },
+          defaults: { temperamento: temperamentos[i] },
+        });
+        tempId.push(att.id); //creo el array de ids de temp
+      }
+      await nuevaRaza.addTemperamentos(tempId);
+    }
     res.status(201).json(nuevaRaza);
   } catch (error) {
     res.status(404).send("Error en alguno de los datos provistos");
@@ -63,7 +85,7 @@ router.get("/temperaments", async (req, res) => {
   //Dentro de cada raza...
   miData.map((raza) => {
     //Reviso el array de temperamento...
-    raza.temperamento?.forEach((e) => {
+    raza.temperamentos?.forEach((e) => {
       //Si el temperamento no esta en mi array strTemp...
       if (!strTemp.includes(e)) {
         //lo incluyo en strTemp, y...
@@ -73,26 +95,17 @@ router.get("/temperaments", async (req, res) => {
       }
     });
   });
-  objTemp.sort((a, b) =>
-    a.temperamento > b.temperamento
-      ? 1
-      : b.temperamento > a.temperamento
-      ? -1
-      : 0
-  );
   res.json(await Temperamento.bulkCreate(objTemp));
 });
 
 router.post("/temperament/dogs", async (req, res) => {
   const { temp } = req.body;
-  console.log(temp);
   let miData = await getApi();
   if (temp.length) {
-    console.log("va por aca");
     const perros = [];
     miData.forEach((e) => {
-      if (e.temperamento)
-        temp.every((v) => e.temperamento.includes(v)) && perros.push(e);
+      if (e.temperamentos)
+        temp.every((v) => e.temperamentos.includes(v)) && perros.push(e);
     });
     perros.length
       ? res.json(perros)

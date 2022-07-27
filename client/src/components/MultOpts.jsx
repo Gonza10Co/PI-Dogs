@@ -31,17 +31,12 @@ export const MultOpts = () => {
       : setQueryTemps(
           queryTemps.filter((e) => e !== li.childNodes[1].innerText)
         );
-    console.log(queryTemps);
     countSelected();
   };
 
   const handleOnClickRender = () => {
     document.querySelector(".select-btn").classList.toggle("open");
     dispatch(getTempDogs({ temp: queryTemps }));
-    // document
-    //   .querySelectorAll(".checked")
-    //   .forEach((e) => (e.className = "item"));
-    // countSelected();
   };
 
   return (
