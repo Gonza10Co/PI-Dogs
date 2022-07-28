@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { setPage } from "../actions";
 import "./Paginado.css";
 
-export default function Paginado({ cardsPerPage, totalCards }) {
+export default function Paginado({ cardsPerPage, totalCards, indexFirstCard }) {
   const dispatch = useDispatch();
   const pages = Math.ceil(totalCards / cardsPerPage);
   const pageNumbers = [];
@@ -11,24 +11,16 @@ export default function Paginado({ cardsPerPage, totalCards }) {
     pageNumbers.push(i);
   }
 
-  const onClickPage = (e) => {
-    let page = document.querySelector(".active-pag");
-    page.classList.remove("active-pag");
-    page = e.target;
-    page.classList.toggle("active-pag");
-    dispatch(setPage(page.innerHTML));
-  };
+  const onClickPage = (e) => dispatch(setPage(e.target.innerHTML));
 
   const onClickPrev = () => {
     let page = document.querySelector(".active-pag");
     page.classList.remove("active-pag");
 
-    // console.log(page.previousSibling.innerHTML === "Prev");
     page.previousSibling.innerHTML === "Prev"
       ? (page = document.querySelector(`#page-${pages}`))
       : (page = page.previousSibling);
 
-    page.classList.toggle("active-pag");
     dispatch(setPage(page.innerHTML));
   };
 
@@ -40,9 +32,9 @@ export default function Paginado({ cardsPerPage, totalCards }) {
       ? (page = document.querySelector("#page-1"))
       : (page = page.nextSibling);
 
-    page.classList.toggle("active-pag");
     dispatch(setPage(page.innerHTML));
   };
+
   return (
     <div className="pagination-container">
       <ul className="pagination">
@@ -51,7 +43,11 @@ export default function Paginado({ cardsPerPage, totalCards }) {
         </li>
         {pageNumbers.map((number) => (
           <li
-            className={number === 1 ? "pageNumber active-pag" : "pageNumber"}
+            className={
+              indexFirstCard / cardsPerPage + 1 === number
+                ? "pageNumber active-pag"
+                : "pageNumber"
+            }
             id={`page-${number}`}
             key={number}
             onClick={onClickPage}

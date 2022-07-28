@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { getTemp } from "../actions";
 import axios from "axios";
 import "./Form.css";
-// import DogDetail from "./DogDetail";
 
 const validate = (input) => {
   let { nombre, duracion, alturaMin, alturaMax, pesoMin, pesoMax } = input;
@@ -83,22 +82,41 @@ export default function Form() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:3001/dogs", form);
-    if (response.status === 201) {
-      document.getElementById("btn-modal").checked = true;
-      document.getElementById("text-modal").innerText =
-        "El registro se ha creado correctamente";
-      setCreated(true);
+    if (
+      !form.nombre ||
+      !form.alturaMin ||
+      !form.alturaMax ||
+      !form.pesoMin ||
+      !form.pesoMax ||
+      errors.nombre ||
+      errors.alturaMin ||
+      errors.alturaMax ||
+      errors.pesoMin ||
+      errors.pesoMax
+    )
+      return alert("Check information provided");
+    try {
+      const response = await axios.post("http://localhost:3001/dogs", form);
+      if (response.status === 201) {
+        document.getElementById("btn-modal").checked = true;
+        document.getElementById("text-modal").innerText =
+          "El registro se ha creado correctamente";
+        setCreated(true);
+      }
+
+    } catch (err) {
+      alert('The breed already exists in the database. ☹')
+      console.log(err)
     }
+    
   };
 
   const onClickSignUp = () => {
     const userForms = document.getElementById("user_options-forms");
     userForms.classList.remove("bounceRight");
     userForms.classList.add("bounceLeft");
-    
   };
-  
+
   const onCLickLogIn = () => {
     const userForms = document.getElementById("user_options-forms");
     userForms.classList.remove("bounceLeft");
@@ -332,23 +350,14 @@ export default function Form() {
                   </ul>
                 </div>
                 <div className="file">
-                  {/* <input
-                    type="text"
-                    id="file"
-                    aria-label="File browser example"
-                    className="btn-upload"
-                    onChange={viewFile}
-                    accepts="image/png, image/jpg"
-                  /> */}
                   <input
-                    type="text"
+                    type="url"
                     className="file-custom"
                     value={form.imagen}
                     placeholder="input img url..."
                     name="imagen"
                     onChange={handleOnChange}
                   ></input>
-                  {/* <img id="img" src="" alt="" style={{ width: "100px" }} /> */}
                 </div>
                 <div className="forms_buttons">
                   <input

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import {
-  getDogs,
   sortAscAZ,
   sortDescAZ,
   sortAsc19,
   sortDesc19,
   setPage,
+  searchDog,
+  setLoading,
 } from "../actions";
 import { MultOpts } from "./MultOpts";
 import "./SearchBar.css";
@@ -23,18 +24,16 @@ export default function SearchBar() {
     setSearch(e.target.value);
   };
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (location.pathname !== "/dogs") history.push("/dogs");
-    let page = document.querySelector(".active-pag");
-    page.classList.remove("active-pag");
-    page = document.querySelector("#page-1");
-    page.classList.toggle("active-pag");
-    await dispatch(getDogs(search));
+    dispatch(setLoading(true));
+    dispatch(searchDog(search));
     dispatch(setPage(1));
+    if (location.pathname !== "/dogs") history.push("/dogs");
   };
 
   const onClickSortAZ = () => {
+    dispatch(setLoading(true));
     const element = document.querySelector(".sortAZ");
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
@@ -47,6 +46,7 @@ export default function SearchBar() {
   };
 
   const onClickSort19 = () => {
+    dispatch(setLoading(true));
     const element = document.querySelector(".sort19");
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {

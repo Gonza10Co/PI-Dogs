@@ -1,0 +1,89 @@
+/* *, *::before, *::after {
+  box-sizing: border-box;
+} */
+
+/* html {
+  font-size: 100%;
+}
+body {
+  background-color: #000000;
+  color: #ffffff;
+  line-height: 1.5;
+  user-select: none;
+} */
+
+.bg { 
+  position: relative; 
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../assets/collage2.jpg");
+  background-size: cover;
+  
+}
+
+ .hero::before {
+
+	 position: absolute;
+	 top: 0px;
+	 right: 0px;
+	 bottom: 0px;
+	 left: 0px;
+	 background-color: rgba(152, 66, 211, 0.63);
+}
+
+.contain {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.title {
+  position: relative;
+  color: #003566;  
+  font-size: 14rem;
+  line-height: 0.9;
+  text-align: center;
+}
+
+
+.landing-btn {
+  border: 3px solid #003566;
+  border-radius: 10px;
+  padding: 20px 80px;
+  display: inline-block;
+  text-decoration: none;
+  color: #003566;
+  font-size:4rem;
+  font-weight: bolder;
+  width: fit-content;
+}
+
+/* background-image: url("../assets/collage2.jpg"); */
+/* .contain {
+  position: relative;
+  max-width: 1055px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  margin-bottom: 40px;
+  font: 60px "Stint Ultra Condensed";
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.contain p {
+  max-width: 450px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font: 18px Arial, sans-serif;
+} */

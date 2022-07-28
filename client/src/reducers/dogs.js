@@ -1,4 +1,5 @@
 import {
+  CLEAR_DOGS,
   SET_DOGS,
   SORT_ASC_AZ,
   SORT_DESC_AZ,
@@ -11,6 +12,8 @@ const initialState = [];
 
 export const redDogs = (state = initialState, { type, payload }) => {
   switch (type) {
+    case CLEAR_DOGS:
+      return initialState;
     case SET_DOGS:
       return payload;
     case SORT_ASC_AZ:
@@ -33,7 +36,7 @@ export const redDogs = (state = initialState, { type, payload }) => {
           ? -1
           : 0
       );
-      return [...state];;
+      return [...state];
     case SORT_DESC_19:
       payload.sort((a, b) =>
         (Number(a.pesoMin) + Number(a.pesoMax)) / 2 <
@@ -44,7 +47,7 @@ export const redDogs = (state = initialState, { type, payload }) => {
           ? -1
           : 0
       );
-      return [...state];;
+      return [...state];
     case GET_TEMP_DOGS:
       return payload;
     default:

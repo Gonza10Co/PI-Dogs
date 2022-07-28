@@ -19,7 +19,8 @@
 }
 
 .topnav a.active {
-  background-color: #2196F3;
+  background-color: #333;
+  /* background-color: #2196F3; */
   color: white;
 }
 
@@ -44,7 +45,7 @@
 
 .topnav .search-container button {
   padding: 6px 10px;
-  background: #2196F3;
+  background: #333;
   color: #fff;
   font-size: 16px;
   border: none;

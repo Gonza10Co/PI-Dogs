@@ -3,7 +3,7 @@
   margin-top: 0;
   font-family: 'Josefin Sans', sans-serif;
   background-color: #191919;
-  height: 100vh;
+  height: 200vh;
   user-select: none;
 }
 .main {
@@ -29,7 +29,6 @@
   grid-template-columns: 1fr 1fr;
   width: 720px;
   justify-items: center;
-
 }
 .text-wrapper h4{
   color: #fcfc;

@@ -1,7 +1,7 @@
 //https://www.youtube.com/watch?v=IBDKc1T5KQ8
 import "./MultOpt.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getTemp, getTempDogs } from "../actions";
+import { clearDogs, getTemp, getTempDogs, setPage } from "../actions";
 import { useState } from "react";
 
 export const MultOpts = () => {
@@ -36,6 +36,8 @@ export const MultOpts = () => {
 
   const handleOnClickRender = () => {
     document.querySelector(".select-btn").classList.toggle("open");
+    dispatch(clearDogs())
+    dispatch(setPage(1));
     dispatch(getTempDogs({ temp: queryTemps }));
   };
 

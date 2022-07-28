@@ -1,29 +1,43 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Dog from "../components/Dogs";
-import { getDogs } from "../actions";
+import { clearDogs, getDogs } from "../actions";
 import "./Dogs.css";
 import Paginado from "../components/Paginado";
 
 export default function Dogs() {
-  const { redDogs: data, redPage } = useSelector((state) => state);
+  const { redDogs: data, redPage, redSearch } = useSelector((state) => state);
   const dispatch = useDispatch();
+
   //Para el paginado:
-  const cardsPerPage=8;
-  const totalCards = data.length;
+  const cardsPerPage = 8;
   const indexLastCard = redPage * cardsPerPage;
   const indexFirstCard = indexLastCard - cardsPerPage;
-  const cardsPage = data.slice(indexFirstCard, indexLastCard);
-  
+  let totalCards = 0;
+  let cardsPage = [];
+  if (data) {
+    totalCards = data.length;
+    cardsPage = data.slice(indexFirstCard, indexLastCard);
+  }
+
   useEffect(() => {
-    dispatch(getDogs());
-  }, [dispatch]);
-  
+    dispatch(getDogs(redSearch));
+    return () => dispatch(clearDogs());
+  }, [dispatch, redSearch]);
+
+  if (!data)
+    return (
+      <h1 style={{ color: "white" }}>
+        Breed not found ☹
+      </h1>
+    );
+
   return (
     <>
       <Paginado
         cardsPerPage={cardsPerPage}
         totalCards={totalCards}
+        indexFirstCard={indexFirstCard}
       />
       <div className="wrapper">
         {cardsPage.map((raza) => (
