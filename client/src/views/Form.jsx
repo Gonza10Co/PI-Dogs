@@ -50,24 +50,24 @@ export default function Form() {
   const [errors, setErrors] = useState({});
   const [created, setCreated] = useState(false);
   const [form, setForm] = useState({
-    // nombre: "",
-    // duracion: "",
-    // alturaMin: "",
-    // alturaMax: "",
-    // pesoMin: "",
-    // pesoMax: "",
-    // temperamentos: [],
-    // imagen:""
-
-    nombre: "English Bulldog",
-    duracion: "14",
-    alturaMin: "10",
-    alturaMax: "20",
-    pesoMin: "12",
-    pesoMax: "24",
+    nombre: "",
+    duracion: "",
+    alturaMin: "",
+    alturaMax: "",
+    pesoMin: "",
+    pesoMax: "",
     temperamentos: [],
-    imagen:
-      "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
+    imagen:""
+
+    // nombre: "English Bulldog",
+    // duracion: "14",
+    // alturaMin: "10",
+    // alturaMax: "20",
+    // pesoMin: "12",
+    // pesoMax: "24",
+    // temperamentos: [],
+    // imagen:
+    //   "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
   });
   const myPortrail = document.querySelector("#forms-about");
 
@@ -185,11 +185,16 @@ export default function Form() {
             </div>
 
             <div className="user_options-registered">
-              <h2 className="user_registered-title">Have an picture?</h2>
-              <p className="user_registered-text">
-                Here you can upload the best picture you found of your new
-                creation.
-              </p>
+              <h2 className="user_registered-title">Form instructions</h2>
+              <ul className="user_registered-text">
+                <li>
+                  You cannot create a breed with an existing name in our
+                  database
+                </li>
+                <li>
+                  (*) Breed name, height weight are mandatory fields to create the new breed.
+                </li>
+              </ul>
               <button
                 onClick={onCLickLogIn}
                 className="formBtn user_registered-login"
@@ -237,7 +242,7 @@ export default function Form() {
               <form className="forms_form">
                 {/* Name and Life Span */}
                 <div className="forms_field">
-                  <label className="forms-label">Breed Name: </label>
+                  <label className="forms-label">Breed Name*: </label>
                   <input
                     required
                     type="text"
@@ -266,7 +271,7 @@ export default function Form() {
                 </div>
                 {/* Height */}
                 <div className="forms_field">
-                  <label className="forms-label">Height min (cm): </label>
+                  <label className="forms-label">Height min* (cm): </label>
                   <input
                     required
                     type="number"
@@ -281,7 +286,7 @@ export default function Form() {
                   <p className="forms-error">{errors.alturaMin}</p>
                 </div>
                 <div className="forms_field">
-                  <label className="forms-label">Height max (cm): </label>
+                  <label className="forms-label">Height max* (cm): </label>
                   <input
                     required
                     type="number"
@@ -297,7 +302,7 @@ export default function Form() {
                 </div>
                 {/* Weight */}
                 <div className="forms_field">
-                  <label className="forms-label">Weight min (kg): </label>
+                  <label className="forms-label">Weight min* (kg): </label>
                   <input
                     required
                     type="number"
@@ -312,7 +317,7 @@ export default function Form() {
                   <p className="forms-error">{errors.pesoMin}</p>
                 </div>
                 <div className="forms_field">
-                  <label className="forms-label">Weight max (kg): </label>
+                  <label className="forms-label">Weight max* (kg): </label>
                   <input
                     required
                     type="number"

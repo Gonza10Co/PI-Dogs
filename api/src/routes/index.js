@@ -12,9 +12,15 @@ const router = Router();
 router.get("/dogs", async (req, res) => {
   const { name } = req.query;
   let miData = await getApi();
+  // miData.forEach((e) => {//por si exigen solamente lo de la ruta principal
+  //   delete e.alturaMax;
+  //   delete e.alturaMin;
+  //   delete e.duracion;
+  // });
   if (name) {
     const raza = name[0].toUpperCase() + name.substring(1).toLowerCase();
     const perro = miData.filter((e) => e.nombre.includes(raza));
+
     perro.length
       ? res.json(perro)
       : res.status(404).send(`La raza ${raza} no existe en nuestros registros`);
@@ -44,7 +50,7 @@ router.post("/dogs", async (req, res) => {
     pesoMin,
     pesoMax,
     temperamentos,
-    imagen
+    imagen,
   } = req.body;
   if (!nombre || !alturaMin || !alturaMax || !pesoMin || !pesoMax)
     return res.status(404).send("Falta ingresar datos obligatorios");

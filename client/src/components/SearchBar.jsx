@@ -65,7 +65,7 @@ export default function SearchBar() {
           Home
         </a>
         <a href="/dogs/create">Create</a>
-        <a href="#contact">About</a>
+        <a href="/dogs/about">About</a>
         <MultOpts />
         <div className="search-container">
           <form onSubmit={handleOnSubmit}>
