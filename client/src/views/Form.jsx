@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { getTemp } from "../actions";
 import axios from "axios";
 import "./Form.css";
@@ -45,29 +44,28 @@ const validate = (input) => {
 
 export default function Form() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { redTemp } = useSelector((state) => state);
   const [errors, setErrors] = useState({});
   const [created, setCreated] = useState(false);
   const [form, setForm] = useState({
-    nombre: "",
-    duracion: "",
-    alturaMin: "",
-    alturaMax: "",
-    pesoMin: "",
-    pesoMax: "",
-    temperamentos: [],
-    imagen:""
-
-    // nombre: "English Bulldog",
-    // duracion: "14",
-    // alturaMin: "10",
-    // alturaMax: "20",
-    // pesoMin: "12",
-    // pesoMax: "24",
+    // nombre: "",
+    // duracion: "",
+    // alturaMin: "",
+    // alturaMax: "",
+    // pesoMin: "",
+    // pesoMax: "",
     // temperamentos: [],
-    // imagen:
-    //   "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
+    // imagen:""
+
+    nombre: "English Bulldog",
+    duracion: "14",
+    alturaMin: "10",
+    alturaMax: "20",
+    pesoMin: "12",
+    pesoMax: "24",
+    temperamentos: [],
+    imagen:
+      "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
   });
   const myPortrail = document.querySelector("#forms-about");
 
@@ -159,10 +157,6 @@ export default function Form() {
     setSelected();
   };
 
-  const onClickBtn = () => {
-    history.push("/dogs");
-  };
-
   return (
     <>
       <section className="user">
@@ -192,7 +186,8 @@ export default function Form() {
                   database
                 </li>
                 <li>
-                  (*) Breed name, height weight are mandatory fields to create the new breed.
+                  (*) Breed name, height weight are mandatory fields to create
+                  the new breed.
                 </li>
               </ul>
               <button
@@ -230,8 +225,8 @@ export default function Form() {
                     </ul>
                   </div>
                 </div>
-                <button onClick={onClickBtn} type="button">
-                  back
+                <button type="button">
+                  <a href="/dogs/">back</a>
                 </button>
               </div>
             </section>

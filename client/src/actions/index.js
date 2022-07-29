@@ -35,17 +35,13 @@ export const getDogs = (name = "") => {
 export const searchDog = (payload) => (dispatch) =>
   dispatch({ type: SEARCH_DOGS, payload });
 
-export const sortAscAZ = (payload) => (dispatch) =>
-  dispatch({ type: SORT_ASC_AZ, payload });
+export const sortAscAZ = () => (dispatch) => dispatch({ type: SORT_ASC_AZ });
 
-export const sortDescAZ = (payload) => (dispatch) =>
-  dispatch({ type: SORT_DESC_AZ, payload });
+export const sortDescAZ = () => (dispatch) => dispatch({ type: SORT_DESC_AZ });
 
-export const sortAsc19 = (payload) => (dispatch) =>
-  dispatch({ type: SORT_ASC_19, payload });
+export const sortAsc19 = () => (dispatch) => dispatch({ type: SORT_ASC_19 });
 
-export const sortDesc19 = (payload) => (dispatch) =>
-  dispatch({ type: SORT_DESC_19, payload });
+export const sortDesc19 = () => (dispatch) => dispatch({ type: SORT_DESC_19 });
 
 //Trae todos los temps q hay en la Api y BD
 export const getTemp = () => {

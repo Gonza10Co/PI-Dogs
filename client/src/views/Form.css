@@ -458,12 +458,11 @@
   z-index: -1;
 }
 
-
 /* Mini Details */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;500;600&display=swap');
-.forms-about{
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;500;600&display=swap");
+.forms-about {
   margin-top: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   background-color: #003566;
   height: 57vh;
   border-radius: 5px;
@@ -471,62 +470,64 @@
   opacity: 0;
 }
 .forms-main {
-  display:grid;
+  display: grid;
   justify-items: center;
 }
-.forms-main h1{
+.forms-main h1 {
   color: #fff;
-  font-size: 40px;;
+  font-size: 40px;
   text-transform: capitalize;
-  margin:30px;
+  margin: 30px;
 }
-.forms-main h1 span{
+.forms-main h1 span {
   color: #f9004d;
 }
-.forms-main img{
-  height:auto;
+.forms-main img {
+  height: auto;
   width: 400px;
   border-radius: 5px;
-  margin-bottom: 30px
+  margin-bottom: 30px;
 }
-.forms-text-wrapper{
+.forms-text-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 360px;
   justify-items: center;
-
 }
-.forms-text-wrapper h4{
+.forms-text-wrapper h4 {
   color: #fcfc;
-  font-size: 13px;;
-  margin-bottom:10px;
+  font-size: 13px;
+  margin-bottom: 10px;
   letter-spacing: 1px;
 }
 .forms-text-wrapper h6,
 .forms-text-wrapper li {
   color: #fff;
-  font-size: 13px;;
-  margin-bottom:px;
-  margin-top:20px;
+  font-size: 13px;
+  margin-bottom: px;
+  margin-top: 20px;
   letter-spacing: 1px;
-  }
-    .forms-main button{
-    background-color:#f9004d ;
-    color: white;
-    font-size: 15px;
-    text-decoration: none;
-    border: 2px solid transparent;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 30px;
-    transition: .5s;
-  }
-  
-  .forms-main button:hover{
-    background: transparent;
-    border: 2px solid #f9004d;
-    cursor: pointer;
-  }
-  
-  /* 
+}
+.forms-main button {
+  background-color: #f9004d;
+  font-size: 15px;
+  border: 2px solid transparent;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.forms-main button a{
+  color: white;
+  text-decoration: none;
+}
+
+.forms-main button:hover {
+  background: transparent;
+  border: 2px solid #f9004d;
+  cursor: pointer;
+}
+
+/* 
 **/

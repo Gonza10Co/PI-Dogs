@@ -18,7 +18,14 @@ router.get("/dogs", async (req, res) => {
   //   delete e.duracion;
   // });
   if (name) {
-    const raza = name[0].toUpperCase() + name.substring(1).toLowerCase();
+    const nameArray = name.split(" ");
+    const newName = [];
+    for (const palabra of nameArray) {
+      newName.push(
+        palabra[0].toUpperCase() + palabra.substring(1).toLowerCase()
+      );
+    }
+    const raza = newName.join(" ");
     const perro = miData.filter((e) => e.nombre.includes(raza));
 
     perro.length

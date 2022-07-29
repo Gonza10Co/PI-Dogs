@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import {
   sortAscAZ,
@@ -18,7 +18,6 @@ export default function SearchBar() {
   const location = useLocation();
   const history = useHistory();
   const [search, setSearch] = useState("");
-  const { redDogs: data } = useSelector((state) => state);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
@@ -38,10 +37,10 @@ export default function SearchBar() {
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
       element.childNodes[0].className = "fa-solid fa-arrow-up-z-a";
-      dispatch(sortDescAZ(data));
+      dispatch(sortDescAZ());
     } else {
       element.childNodes[0].className = "fa-solid fa-arrow-down-a-z";
-      dispatch(sortAscAZ(data));
+      dispatch(sortAscAZ());
     }
   };
 
@@ -51,10 +50,10 @@ export default function SearchBar() {
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
       element.childNodes[0].className = "fa-solid fa-arrow-up-1-9";
-      dispatch(sortDesc19(data));
+      dispatch(sortDesc19());
     } else {
       element.childNodes[0].className = "fa-solid fa-arrow-down-1-9";
-      dispatch(sortAsc19(data));
+      dispatch(sortAsc19());
     }
   };
 

@@ -16,7 +16,9 @@ export default function About() {
             iure, maxime eum minus similique aliquid perferendis dolor quod
             laboriosam rem nulla, fugit quaerat aperiam doloribus totam.
           </p>
-          <button type="button">back</button>
+          <button type="button">
+            <a href="/dogs/">back</a>
+          </button>
         </div>
       </div>
     </section>
