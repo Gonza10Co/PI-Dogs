@@ -331,7 +331,7 @@
   user-select: none;
 }
 
-.forms-item.checked .forms-checkbox {
+.forms-item.fchecked .forms-checkbox {
   background-color: #4070f4;
   border-color: #4070f4;
 }
@@ -341,7 +341,7 @@
   transform: scale(0);
 }
 
-.forms-item.checked .forms-check-icon {
+.forms-item.fchecked .forms-check-icon {
   transform: scale(1);
 }
 

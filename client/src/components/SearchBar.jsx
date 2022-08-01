@@ -60,11 +60,24 @@ export default function SearchBar() {
   return (
     <>
       <div className="topnav">
-        <a className="active" href="/dogs">
+        <a
+          className={location.pathname === "/dogs" ? "active" : ""}
+          href="/dogs"
+        >
           Home
         </a>
-        <a href="/dogs/create">Create</a>
-        <a href="/dogs/about">About</a>
+        <a
+          className={location.pathname === "/dogs/create" ? "active" : ""}
+          href="/dogs/create"
+        >
+          Create
+        </a>
+        <a
+          className={location.pathname === "/dogs/about" ? "active" : ""}
+          href="/dogs/about"
+        >
+          About
+        </a>
         <MultOpts />
         <div className="search-container">
           <form onSubmit={handleOnSubmit}>

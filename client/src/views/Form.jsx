@@ -101,12 +101,9 @@ export default function Form() {
           "El registro se ha creado correctamente";
         setCreated(true);
       }
-
     } catch (err) {
       alert('The breed already exists in the database. ☹')
-      console.log(err)
     }
-    
   };
 
   const onClickSignUp = () => {
@@ -124,17 +121,18 @@ export default function Form() {
   };
 
   //-------- Controles para Temperamentos ---------
+  
   const handleOnClickDiv = () => {
     dispatch(getTemp());
     document.querySelector(".forms-select-btn").classList.toggle("open");
   };
 
   const setSelected = () => {
-    let checked = document.querySelectorAll(".checked");
+    let checked = document.querySelectorAll(".fchecked");
     let btnText = document.querySelector(".forms-btn-text");
     checked.length
-      ? (btnText.value = `${checked.length} Selected`)
-      : (btnText.value = "Select Temperament");
+      ? (btnText.innerText = `${checked.length} Selected`)
+      : (btnText.innerText = "Select Temperament");
   };
 
   const OnClickItem = (e) => {
@@ -142,7 +140,7 @@ export default function Form() {
       e.target.classList[0] === "forms-item"
         ? e.target
         : e.target.parentElement;
-    li.classList.toggle("checked");
+    li.classList.toggle("fchecked");
     li.classList[1]
       ? setForm((prevState) => ({
           ...prevState,
