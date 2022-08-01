@@ -38,14 +38,17 @@ router.get("/dogs", async (req, res) => {
 
 router.get("/dogs/:id", async (req, res) => {
   let miData = await getApi();
-  res.json(
-    miData.find(
-      (e) =>
-        Number(req.params.id)
-          ? e.id === Number(req.params.id) //From BD
-          : e.id === req.params.id //From API
-    )
+  const miDog = miData.find(
+    (e) =>
+      Number(req.params.id)
+        ? e.id === Number(req.params.id) //From BD
+        : e.id === req.params.id //From API
   );
+  if (miDog) {
+    res.status(200).json(miDog);
+  } else {
+    res.status(404).send("Dog not found");
+  }
 });
 
 router.post("/dogs", async (req, res) => {

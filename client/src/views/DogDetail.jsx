@@ -1,32 +1,25 @@
 // import Dog from "../components/Dogs";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams,  useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "./DogDetail.css";
 
 export default function DogDetail() {
   const { id } = useParams();
-  const [loading, setLoading] = useState(true);
   const [dog, setDog] = useState({});
   const history = useHistory();
 
   useEffect(() => {
-    if (loading) {
-      fetch(`http://localhost:3001/dogs/${id}`)
-        .then((response) => {
-          if (response.ok) {
-            response.json().then((resJson) => {
-              setDog(resJson); // ➡ Guardar datos
-              setLoading(false); // ➡ Desactivar modo "cargando"
-            });
-          } else {
-            console.log("Hubo un error cargando Data"); // ⬅️ hubo un problema HTTP 4XX o 5XX
-          }
-        })
-        .catch((error) => {
-          console.log("No pudimos hacer la solicitud para obtener el perrito");
-        });
+    async function fetchData() {
+      try {
+        const response = await axios.get(`/dogs/${id}`);
+        setDog(response.data); // ➡ Guardar datos
+      } catch (error) {
+        alert(error);
+      }
     }
-  }, [id, loading]); //⬅️ ahora este efecto se ejecutará cada vez que cambie este estado
+    fetchData();
+  }, [id]); //⬅️ ahora este efecto se ejecutará cada vez que cambie este estado
 
   let arrayTemp = [];
   if (dog.temperamentos && typeof dog.id === "string")
@@ -40,6 +33,8 @@ export default function DogDetail() {
   const onClickBtn = () => {
     history.push("/dogs");
   };
+
+   if (!dog.nombre) return <h1 style={{ color: "white" }}>Loading...</h1>;
 
   return (
     <section className="about">

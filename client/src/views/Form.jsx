@@ -94,7 +94,7 @@ export default function Form() {
     )
       return alert("Check information provided");
     try {
-      const response = await axios.post("http://localhost:3001/dogs", form);
+      const response = await axios.post("/dogs", form);
       if (response.status === 201) {
         document.getElementById("btn-modal").checked = true;
         document.getElementById("text-modal").innerText =

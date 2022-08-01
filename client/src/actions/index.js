@@ -21,7 +21,7 @@ export const getDogs = (name = "") => {
     dispatch({ type: SET_LOADING, payload: true });
     try {
       const response = await axios.get(
-        `http://localhost:3001/dogs?name=${name}`
+        `/dogs?name=${name}`
       );
       if (response.status === 200)
         dispatch({ type: SET_DOGS, payload: response.data });
@@ -47,7 +47,7 @@ export const sortDesc19 = () => (dispatch) => dispatch({ type: SORT_DESC_19 });
 export const getTemp = () => {
   return async (dispatch) => {
     dispatch({ type: SET_LOADING, payload: true });
-    const response = await axios.get("http://localhost:3001/temperaments");
+    const response = await axios.get("/temperaments");
     dispatch({ type: SET_TEMP, payload: response.data });
     dispatch({ type: SET_LOADING, payload: false });
   };
@@ -59,7 +59,7 @@ export const getTempDogs = (json) => {
     dispatch({ type: SET_LOADING, payload: true });
     try {
       const response = await axios.post(
-        "http://localhost:3001/temperament/dogs",
+        "/temperament/dogs",
         json
       );
       if (response.status === 200)
