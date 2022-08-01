@@ -11,7 +11,7 @@ export default function About() {
             Full Stack Web <span>Developer</span>
           </h5>
           <p>
-            I am a Full Stack web developer. Lorem ipsum dolor sit amet
+            My name is Gonzalo Correa. I am a Full Stack web developer. Lorem ipsum dolor sit amet
             consectetur adipisicing elit. Dicta eaque illo necessitatibus natus
             iure, maxime eum minus similique aliquid perferendis dolor quod
             laboriosam rem nulla, fugit quaerat aperiam doloribus totam.
