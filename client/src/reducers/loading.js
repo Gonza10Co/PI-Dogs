@@ -1,9 +1,13 @@
 import { SET_LOADING } from "../actions";
 
-const redLoading = (state = true, { type, payload }) => {
+const initialState = {
+  loading: false
+}
+
+const redLoading = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_LOADING:
-      return payload;
+      return {...state, loading: payload};
     default:
       return state;
   }

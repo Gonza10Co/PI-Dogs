@@ -1,25 +1,31 @@
 // import Dog from "../components/Dogs";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { setLoading } from "../actions";
 import "./DogDetail.css";
 
 export default function DogDetail() {
   const { id } = useParams();
   const [dog, setDog] = useState({});
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { redLoading } = useSelector((state) => state);
 
   useEffect(() => {
     async function fetchData() {
       try {
+        dispatch(setLoading(true))
         const response = await axios.get(`/dogs/${id}`);
         setDog(response.data); // ➡ Guardar datos
+        dispatch(setLoading(false))
       } catch (error) {
         alert(error);
       }
     }
     fetchData();
-  }, [id]); //⬅️ ahora este efecto se ejecutará cada vez que cambie este estado
+  }, [dispatch, id]); //⬅️ ahora este efecto se ejecutará cada vez que cambie este estado
 
   let arrayTemp = [];
   if (dog.temperamentos && typeof dog.id === "string")
@@ -34,8 +40,7 @@ export default function DogDetail() {
     history.push("/dogs");
   };
 
-   if (!dog.nombre) return <h1 style={{ color: "white" }}>Loading...</h1>;
-
+  if (redLoading.loading) return <></>
   return (
     <section className="about">
       <div className="main">

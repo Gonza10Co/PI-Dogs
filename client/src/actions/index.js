@@ -18,18 +18,16 @@ export const clearDogs = () => ({ type: CLEAR_DOGS });
 
 export const getDogs = (name = "") => {
   return async (dispatch) => {
-    dispatch({ type: SET_LOADING, payload: true });
+    dispatch(setLoading(true));
     try {
-      const response = await axios.get(
-        `/dogs?name=${name}`
-      );
+      const response = await axios.get(`/dogs?name=${name}`);
       if (response.status === 200)
         dispatch({ type: SET_DOGS, payload: response.data });
-    } catch {
-      dispatch({ type: SET_DOGS, payload: null });
-    }
+      } catch {
+        dispatch({ type: SET_DOGS, payload: null });
+      }
+      dispatch(setLoading(false));
   };
-  // dispatch({ type: SET_LOADING, payload: false });
 };
 
 export const searchDog = (payload) => (dispatch) =>
@@ -46,27 +44,25 @@ export const sortDesc19 = () => (dispatch) => dispatch({ type: SORT_DESC_19 });
 //Trae todos los temps q hay en la Api y BD
 export const getTemp = () => {
   return async (dispatch) => {
-    dispatch({ type: SET_LOADING, payload: true });
+    dispatch(setLoading(true));
     const response = await axios.get("/temperaments");
     dispatch({ type: SET_TEMP, payload: response.data });
-    dispatch({ type: SET_LOADING, payload: false });
+    dispatch(setLoading(false));
   };
 };
 
 //Hace un request a endpoint pasando body los temps seleccionados.
 export const getTempDogs = (json) => {
   return async (dispatch) => {
-    dispatch({ type: SET_LOADING, payload: true });
+    dispatch(setLoading(true));
     try {
-      const response = await axios.post(
-        "/temperament/dogs",
-        json
-      );
+      const response = await axios.post("/temperament/dogs", json);
       if (response.status === 200)
         dispatch({ type: GET_TEMP_DOGS, payload: response.data });
     } catch {
       dispatch({ type: GET_TEMP_DOGS, payload: null });
     }
+    dispatch(setLoading(false));
   };
 };
 

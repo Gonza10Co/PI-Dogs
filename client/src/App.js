@@ -8,13 +8,12 @@ import Form from "./views/Form";
 import About from "./views/about";
 
 export default function App() {
-    const location = useLocation();
+  const location = useLocation();
   return (
     <>
-      {location.pathname !== "/"? <SearchBar />:<></>}
+      {location.pathname !== "/" ? <SearchBar /> : <></>}
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/dogs" component={Dogs} />
         <Route exact path="/dogs/create" component={Form} />
         <Route exact path="/dogs/about" component={About} />

@@ -27,7 +27,7 @@ export default function Dogs() {
 
   if (!data)
     return (
-      <h1 style={{ color: "white" }}>
+      <h1 style={{ color: "white", margin: "20px" }}>
         Breed not found ☹
       </h1>
     );

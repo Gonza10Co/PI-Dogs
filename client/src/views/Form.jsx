@@ -116,7 +116,6 @@ export default function Form() {
     const userForms = document.getElementById("user_options-forms");
     userForms.classList.remove("bounceLeft");
     userForms.classList.add("bounceRight");
-    console.log(created);
     created && (myPortrail.style.opacity = 1);
   };
 

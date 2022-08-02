@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import {
   sortAscAZ,
@@ -8,7 +8,6 @@ import {
   sortDesc19,
   setPage,
   searchDog,
-  setLoading,
 } from "../actions";
 import { MultOpts } from "./MultOpts";
 import "./SearchBar.css";
@@ -18,6 +17,7 @@ export default function SearchBar() {
   const location = useLocation();
   const history = useHistory();
   const [search, setSearch] = useState("");
+  const { redLoading } = useSelector((state) => state);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
@@ -25,14 +25,12 @@ export default function SearchBar() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(setLoading(true));
     dispatch(searchDog(search));
     dispatch(setPage(1));
     if (location.pathname !== "/dogs") history.push("/dogs");
   };
 
   const onClickSortAZ = () => {
-    dispatch(setLoading(true));
     const element = document.querySelector(".sortAZ");
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
@@ -45,7 +43,6 @@ export default function SearchBar() {
   };
 
   const onClickSort19 = () => {
-    dispatch(setLoading(true));
     const element = document.querySelector(".sort19");
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
@@ -100,6 +97,11 @@ export default function SearchBar() {
           </form>
         </div>
       </div>
+      {redLoading.loading && (
+        <div className="progress-bar">
+          <div className="progress-bar-value"></div>
+        </div>
+      )}
     </>
   );
 }

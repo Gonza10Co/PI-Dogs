@@ -10,9 +10,9 @@ export default function Home() {
     // </main>
     <>
     <div className="bg">
-      <article class="contain">
-        <h2 class="title">Doggypedia</h2>
-         <a href="/dogs" class="landing-btn">
+      <article className="contain">
+        <h2 className="title">Doggypedia</h2>
+         <a href="/dogs" className="landing-btn">
           Home
         </a>
       </article>

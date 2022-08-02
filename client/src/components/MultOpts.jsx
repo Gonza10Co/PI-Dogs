@@ -26,19 +26,24 @@ export const MultOpts = () => {
     const li = //si el click es en algun span, el elemento es li
       e.target.classList[0] === "item" ? e.target : e.target.parentElement;
     li.classList.toggle("checked");
-    li.classList[1]
-      ? setQueryTemps([...queryTemps, li.childNodes[1].innerText])
-      : setQueryTemps(
-          queryTemps.filter((e) => e !== li.childNodes[1].innerText)
-        );
+    try {
+      li.classList[1]
+        ? setQueryTemps([...queryTemps, li.childNodes[1].innerText])
+        : setQueryTemps(
+            queryTemps.filter((e) => e !== li.childNodes[1].innerText)
+          );
+    } catch (error) {
+      console.log(error);
+    }
     countSelected();
   };
 
   const handleOnClickRender = () => {
     document.querySelector(".select-btn").classList.toggle("open");
-    dispatch(clearDogs())
+    dispatch(clearDogs());
     dispatch(setPage(1));
     dispatch(getTempDogs({ temp: queryTemps }));
+    handleOnClickDiv();
   };
 
   return (
