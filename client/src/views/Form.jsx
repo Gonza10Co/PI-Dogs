@@ -48,24 +48,24 @@ export default function Form() {
   const [errors, setErrors] = useState({});
   const [created, setCreated] = useState(false);
   const [form, setForm] = useState({
-    // nombre: "",
-    // duracion: "",
-    // alturaMin: "",
-    // alturaMax: "",
-    // pesoMin: "",
-    // pesoMax: "",
-    // temperamentos: [],
-    // imagen:""
-
-    nombre: "English Bulldog",
-    duracion: "14",
-    alturaMin: "10",
-    alturaMax: "20",
-    pesoMin: "12",
-    pesoMax: "24",
+    nombre: "",
+    duracion: "",
+    alturaMin: "",
+    alturaMax: "",
+    pesoMin: "",
+    pesoMax: "",
     temperamentos: [],
-    imagen:
-      "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
+    imagen:""
+
+    // nombre: "English Bulldog",
+    // duracion: "14",
+    // alturaMin: "10",
+    // alturaMax: "20",
+    // pesoMin: "12",
+    // pesoMax: "24",
+    // temperamentos: [],
+    // imagen:
+    //   "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
   });
   const myPortrail = document.querySelector("#forms-about");
 

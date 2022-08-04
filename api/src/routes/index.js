@@ -119,7 +119,16 @@ router.post("/temperament/dogs", async (req, res) => {
   if (temp.length) {
     const perros = [];
     miData.forEach((e) => {
-      if (e.temperamentos)
+      //Si es de bd temperamentos es array de objetos
+      if (e.temperamentos && typeof e.temperamentos[0] === "object") {
+        let arrayTemp = [];
+        e.temperamentos.forEach((element) => {
+          arrayTemp.push(element.temperamento);
+        });
+        temp.every((v) => arrayTemp.includes(v)) && perros.push(e);
+      }
+      //si es de api temperamentos es array de strings
+      if (e.temperamentos && typeof e.temperamentos[0] === "string")
         temp.every((v) => e.temperamentos.includes(v)) && perros.push(e);
     });
     perros.length
