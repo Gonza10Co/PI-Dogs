@@ -31,6 +31,7 @@ export default function SearchBar() {
   };
 
   const onClickSortAZ = () => {
+    if (location.pathname !== "/dogs") history.push("/dogs");
     const element = document.querySelector(".sortAZ");
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
@@ -43,6 +44,7 @@ export default function SearchBar() {
   };
 
   const onClickSort19 = () => {
+    if (location.pathname !== "/dogs") history.push("/dogs");
     const element = document.querySelector(".sort19");
     element.classList.toggle("desc");
     if (element.classList[1] === "desc") {
