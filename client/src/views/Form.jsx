@@ -48,24 +48,24 @@ export default function Form() {
   const [errors, setErrors] = useState({});
   const [created, setCreated] = useState(false);
   const [form, setForm] = useState({
-    nombre: "",
-    duracion: "",
-    alturaMin: "",
-    alturaMax: "",
-    pesoMin: "",
-    pesoMax: "",
-    temperamentos: [],
-    imagen:""
-
-    // nombre: "English Bulldog",
-    // duracion: "14",
-    // alturaMin: "10",
-    // alturaMax: "20",
-    // pesoMin: "12",
-    // pesoMax: "24",
+    // nombre: "",
+    // duracion: "",
+    // alturaMin: "",
+    // alturaMax: "",
+    // pesoMin: "",
+    // pesoMax: "",
     // temperamentos: [],
-    // imagen:
-    //   "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
+    // imagen:""
+
+    nombre: "English Bulldog",
+    duracion: "14",
+    alturaMin: "10",
+    alturaMax: "20",
+    pesoMin: "12",
+    pesoMax: "24",
+    temperamentos: [],
+    imagen:
+      "https://blog.agrocampo.com.co/wp-content/uploads/2021/11/perro-bulldog-ingles.jpg",
   });
   const myPortrail = document.querySelector("#forms-about");
 
@@ -98,11 +98,11 @@ export default function Form() {
       if (response.status === 201) {
         document.getElementById("btn-modal").checked = true;
         document.getElementById("text-modal").innerText =
-          "El registro se ha creado correctamente";
+          "Breed created succesfully";
         setCreated(true);
       }
     } catch (err) {
-      alert('The breed already exists in the database. ☹')
+      alert("The breed already exists in the database. ☹");
     }
   };
 
@@ -120,7 +120,7 @@ export default function Form() {
   };
 
   //-------- Controles para Temperamentos ---------
-  
+
   const handleOnClickDiv = () => {
     dispatch(getTemp());
     document.querySelector(".forms-select-btn").classList.toggle("open");
@@ -201,7 +201,7 @@ export default function Form() {
             <section id="forms-about" className="forms-about">
               <div className="forms-main">
                 <h1>
-                  You just created the <span>{form.nombre}</span>
+                  You created the <span>{form.nombre}</span>
                 </h1>
                 <img src={form.imagen} alt="" />
                 <div className="forms-text-wrapper">
@@ -222,9 +222,6 @@ export default function Form() {
                     </ul>
                   </div>
                 </div>
-                <button type="button">
-                  <a href="/dogs/">back</a>
-                </button>
               </div>
             </section>
 
@@ -268,7 +265,7 @@ export default function Form() {
                     required
                     type="number"
                     min="1"
-                    max="20"
+                    max="110"
                     value={form.alturaMin}
                     className="formInput"
                     placeholder="min height in cm..."
@@ -283,7 +280,7 @@ export default function Form() {
                     required
                     type="number"
                     min="1"
-                    max="20"
+                    max="110"
                     value={form.alturaMax}
                     className="formInput"
                     placeholder="max height in cm..."
@@ -299,7 +296,7 @@ export default function Form() {
                     required
                     type="number"
                     min="1"
-                    max="20"
+                    max="50"
                     value={form.pesoMin}
                     className="formInput"
                     placeholder="min weight in kg..."
@@ -314,7 +311,7 @@ export default function Form() {
                     required
                     type="number"
                     min="1"
-                    max="20"
+                    max="50"
                     value={form.pesoMax}
                     className="formInput"
                     placeholder="max weight in kg..."

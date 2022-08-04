@@ -6,6 +6,8 @@ export default function Dog(props) {
   let tempString = "";
   const pesoString = `${pesoMin} - ${pesoMax}`;
 
+  //Como en la bd tengo temperamento en objetos,
+  //y en BD en arrays, debo tratarlos de forma diferente
   if (temperamentos && typeof id === "string")
     tempString = temperamentos.join(", ");
   else if (temperamentos && typeof id === "number") {
@@ -16,12 +18,13 @@ export default function Dog(props) {
     tempString = arrayTemp.join(", ");
   }
 
-  var cardStyle = {
-    backgroundImage: `url(${imagen})`,
-  };
-
   return (
-    <div style={cardStyle} className="card">
+    <div
+      style={{
+        backgroundImage: `url(${imagen})`,
+      }}
+      className="card"
+    >
       <div className="border">
         <Link to={`/dogs/${id}`}>
           <h2>{nombre}</h2>

@@ -13,6 +13,8 @@ export default function DogDetail() {
   const dispatch = useDispatch();
   const { redLoading } = useSelector((state) => state);
 
+  console.log(dog.duracion)
+
   useEffect(() => {
     async function fetchData() {
       try {

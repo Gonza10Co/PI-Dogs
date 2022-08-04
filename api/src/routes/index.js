@@ -3,12 +3,7 @@ const { Raza, Temperamento } = require("../db");
 const { getApi } = require("../middlewares");
 const router = Router();
 
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
+//Endpoint q une bd con api y devuelve json
 router.get("/dogs", async (req, res) => {
   const { name } = req.query;
   let miData = await getApi();
@@ -36,6 +31,7 @@ router.get("/dogs", async (req, res) => {
   }
 });
 
+//Endpoint q devuelve la raza con el id buscado
 router.get("/dogs/:id", async (req, res) => {
   let miData = await getApi();
   const miDog = miData.find(
@@ -51,6 +47,7 @@ router.get("/dogs/:id", async (req, res) => {
   }
 });
 
+//Endpoint q crea nueva raza y enlaza con temperamento
 router.post("/dogs", async (req, res) => {
   const {
     nombre,
@@ -91,6 +88,7 @@ router.post("/dogs", async (req, res) => {
   }
 });
 
+//Endpoint que crea todos los temperamentos
 router.get("/temperaments", async (req, res) => {
   const myTemps = await Temperamento.findAll();
   if (myTemps.length) return res.json(myTemps);
@@ -114,6 +112,7 @@ router.get("/temperaments", async (req, res) => {
   res.json(await Temperamento.bulkCreate(objTemp));
 });
 
+//Endpoint que filtra los perros por temperamento
 router.post("/temperament/dogs", async (req, res) => {
   const { temp } = req.body;
   let miData = await getApi();
