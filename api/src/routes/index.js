@@ -141,4 +141,18 @@ router.post("/temperament/dogs", async (req, res) => {
   }
 });
 
+router.delete("/dogs/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    res.json(
+      Raza.destroy({
+        where: { id },
+      })
+    );
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 module.exports = router;
+

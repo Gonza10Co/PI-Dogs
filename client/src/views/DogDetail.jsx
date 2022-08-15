@@ -13,8 +13,6 @@ export default function DogDetail() {
   const dispatch = useDispatch();
   const { redLoading } = useSelector((state) => state);
 
-  console.log(dog.duracion)
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -30,7 +28,7 @@ export default function DogDetail() {
   }, [dispatch, id]); //⬅️ ahora este efecto se ejecutará cada vez que cambie este estado
 
   let arrayTemp = [];
-  if (dog.temperamentos && typeof dog.id === "string")
+  if (dog.temperamentos && typeof dog.id === "string")//viene de la api
     arrayTemp = dog.temperamentos;
   else if (dog.temperamentos && typeof dog.id === "number") {
     dog.temperamentos.forEach((element) => {

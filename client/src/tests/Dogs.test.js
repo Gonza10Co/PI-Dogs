@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 
 describe("<Dogs />", () => {
   let dogs;
-  // Si o si vas a tener que usar function component!
+  // Usar function component!
   beforeEach(() => {
     dogs = shallow(<Dogs />);
     expect(isReact.classComponent(Dogs)).toBeFalsy();

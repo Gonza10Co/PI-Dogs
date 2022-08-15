@@ -10,5 +10,5 @@ test('renders learn react link', () => {
 test('back button', () => {
   render(<About />);
   const linkElement = screen.getByText('back').closest('a');
-  expect(linkElement).toHaveAttribute('href','/dogs/')
+  expect(linkElement).toHaveAttribute('href','/dogs')
 });
